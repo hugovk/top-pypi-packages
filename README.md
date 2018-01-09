@@ -1,6 +1,6 @@
 # top-pypi-packages
 
-A weekly dump of the 500 most-downloaded packages from PyPI: 
+A weekly dump of the 1,000 most-downloaded packages from PyPI:
 
 * https://hugovk.github.io/top-pypi-packages/top-pypi-packages.json
 
