@@ -3,6 +3,9 @@
 # Prevents script from running if there are any errors
 set -e
 
+# Timestamp for logs
+echo "$(date)"
+
 # Update
 git pull origin master
 
