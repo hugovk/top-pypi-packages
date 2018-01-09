@@ -1,0 +1,14 @@
+SELECT
+  file.project as project,
+  COUNT(*) as download_count,
+FROM
+  TABLE_DATE_RANGE(
+    [the-psf:pypi.downloads],
+    DATE_ADD(CURRENT_TIMESTAMP(), -366, "day"),
+    DATE_ADD(CURRENT_TIMESTAMP(), -1, "day")
+  )
+GROUP BY
+  project,
+ORDER BY
+  download_count DESC
+LIMIT 500
