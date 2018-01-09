@@ -4,4 +4,4 @@
 set -e
 
 # Generate the files
-/usr/local/bin/pypinfo --json --limit 500 --days 365 "" project > top-pypi-packages.json
+/usr/local/bin/pypinfo --json --limit 1000 --days 365 "" project > top-pypi-packages.json
