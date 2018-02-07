@@ -2,7 +2,8 @@
 
 A weekly dump of the 5,000 most-downloaded packages from PyPI:
 
-* https://hugovk.github.io/top-pypi-packages/top-pypi-packages.json
+* https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.json
+* https://hugovk.github.io/top-pypi-packages/top-pypi-packages-365-days.json
 
 ## Server setup notes
 
