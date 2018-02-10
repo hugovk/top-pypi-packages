@@ -26,7 +26,7 @@ curl https://bootstrap.pypa.io/get-pip.py | sudo python3.6
 Follow https://github.com/ofek/pypinfo to sign up for BigQuery, install and authenticate
 
 ```bash
-sudo pip3 install pypinfo
+sudo pip3 install "pypinfo>=13.0.0"
 pypinfo --help
 pypinfo --auth path/to/your_credentials.json
 ```
