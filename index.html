@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.2/gh-fork-ribbon.min.css" />
+  <!--<link rel="icon" href="favicon.ico">-->
+  <style>
+    body { margin-top:15px; }
+    h1 { text-align: center; }
+    h1,h2,h3 { line-height:1.2; }
+    canvas, body {
+      background-color: #EEEEEE;
+      color: #444;
+      font-size: 18px;
+      line-height: 1.6;
+      margin:40px  auto;
+      max-width: 650px;
+      padding: 0 10px;
+    }
+    pre { text-align: left; }
+    footer { text-align: center; }
+    .github-fork-ribbon:before {
+      background-color: #090;
+    }
+    .github-fork-ribbon:hover, .github-fork-ribbon:active {
+      /* Until github-fork-ribbon-css #62 is released: */
+      background-color: rgba(0, 0, 0, 0.0);
+      outline: none;
+    }
+    .wrapper {
+      display: grid;
+      grid-template-columns: 1fr 8fr 1fr;
+      grid-gap: 10px;
+      grid-auto-rows: minmax(40px, auto);
+    }
+    .one {
+      grid-column: 1;
+      margin: auto auto auto 10px;
+      text-align: left;
+    }
+    .two {
+      grid-column: 2;
+      margin: auto;
+      text-align: center;
+    }
+    .three {
+      grid-column: 3;
+      margin: auto 10px auto auto;
+      text-align: right;
+    }
+    a {
+      color: #090;
+      text-decoration: none;
+    }
+    a:hover,
+    a:hover div {
+      /*color: #007b00;*/
+      color: white;
+      background-color: #090;
+      outline: 0.05em solid #090;
+    }
+  </style>
+  <title>Top PyPI Packages: A weekly dump of the 5,000 most-downloaded packages from PyPI</title>
+  <meta property="og:title" content="Top PyPI Packages">
+  <meta property="og:type" content="website">
+  <!--<meta property="og:image" content="https://hugovk.github.io/top-pypi-packages/image.png">-->
+  <!--<meta property="og:image:width" content="630">-->
+  <!--<meta property="og:image:height" content="630">-->
+  <meta property="og:url" content="https://hugovk.github.io/top-pypi-packages/">
+  <meta property="og:description" content="A weekly dump of the 5,000 most-downloaded packages from PyPI">
+</head>
+<body ng-app="app" ng-controller="packageCtrl">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+      <h1 id="top">Top PyPI Packages</h1>
+        <h2 id="what">What is this?</h2>
+        <p>A weekly dump of the 5,000 most-downloaded packages from PyPI.</p>
+        <ul>
+          <li><a href="https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.json">https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.json</a></li>
+          <li><a href="https://hugovk.github.io/top-pypi-packages/top-pypi-packages-365-days.json">https://hugovk.github.io/top-pypi-packages/top-pypi-packages-365-days.json</a></li>
+        </ul>
+        <h2 id="thanks">Thanks</h2>
+        <p>Thanks to <a href="https://pypi.python.org/">PyPI</a>, <a href="https://cloud.google.com/bigquery/">Google BigQuery</a>, <a href="https://github.com/ofek/pypinfo">pypinfo</a> and <a href="http://pythonwheels.com/">Python Wheels</a>.</p>
+      </div>
+      <div class="col-sm-6">
+        <h2 id="charts">The charts</h2>
+        <div>
+          <span ng-bind="now_showing_packages">...</span>
+          <span ng-bind="now_showing_days">...</span>
+        </div>
+        <button ng-click="show(500)" >Show 500</button>
+        <button ng-click="show(1000)" >Show 1,000</button>
+        <button ng-click="show(5000)" >Show 5,000</button>
+        <button ng-click="days_30()" >30 days</button>
+        <button ng-click="days_365()" >365 days</button>
+         <div class="list">
+          <span ng-hide="packages">JavaScript must be enabled to display the list of packages.</span>
+          <a ng-repeat="package in packages" ng-href="https://pypi.python.org/pypi/{{ package.project }}" class="" ng-attr-title="{{ package.project }}">
+            <div class="wrapper">
+              <div class="one" id="{{ $index + 1 }}">{{ ($index + 1).toLocaleString() }}.</div>
+              <div class="two" id="{{ package.project }}" ng-bind="package.project"></div>
+              <div class="three" ng-bind="package.download_count.toLocaleString()"></div>
+            </div>
+          </a>
+        </div>
+        <div>
+          <span ng-bind="now_showing_packages"></span>
+          <span ng-bind="now_showing_days"></span>
+        </div>
+        <button ng-click="show(500)" >Show 500</button>
+        <button ng-click="show(1000)" >Show 1,000</button>
+        <button ng-click="show(5000)" >Show 5,000</button>
+        <button ng-click="days_30()" >30 days</button>
+        <button ng-click="days_365()" >365 days</button>
+      </div>
+    </div>
+    <footer>
+      <p>Last updated <span ng-bind="last_update"></span>. (Updated weekly.)</p>
+      <a class="github-fork-ribbon" href="https://github.com/hugovk/top-pypi-packages" target="_blank" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
+    </footer>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script>
+    var app = angular.module('app', [])
+    .controller('packageCtrl', function ($scope, $http) {
+      $scope.num_packages = 500;
+      $scope.show = function (number) {
+        $scope.packages = $scope.all_packages.slice(0, number);
+        $scope.num_packages = number;
+        $scope.now_showing_packages = 'Showing ' + number.toLocaleString() + ' packages';
+      };
+      $scope.days_30 = function () {
+        $scope.all_packages = $scope.all_packages_30;
+        $scope.show($scope.num_packages);
+        $scope.now_showing_days = 'over 30 days.';
+      };
+      $scope.days_365 = function () {
+        $scope.all_packages = $scope.all_packages_365;
+        $scope.show($scope.num_packages);
+        $scope.now_showing_days = 'over 365 days.';
+      };
+      $http.get('top-pypi-packages-365-days.json').then(function(res) {
+        $scope.last_update = res.data.last_update;
+        // Store all for later
+        $scope.all_packages_365 = res.data['rows'];
+        // We'll show these to begin
+        $scope.days_365();
+      });
+      $http.get('top-pypi-packages-30-days.json').then(function(res) {
+        // Store all for later
+        $scope.all_packages_30 = res.data['rows'];
+      });
+    });
+  </script>
+</body>
+</html>
