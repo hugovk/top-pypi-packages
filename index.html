@@ -80,6 +80,11 @@
           <li><a href="https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.json">https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.json</a></li>
           <li><a href="https://hugovk.github.io/top-pypi-packages/top-pypi-packages-365-days.json">https://hugovk.github.io/top-pypi-packages/top-pypi-packages-365-days.json</a></li>
         </ul>
+        <p>Minified:</p>
+        <ul>
+          <li><a href="https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.json">https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json</a></li>
+          <li><a href="https://hugovk.github.io/top-pypi-packages/top-pypi-packages-365-days.json">https://hugovk.github.io/top-pypi-packages/top-pypi-packages-365-days.min.json</a></li>
+        </ul>
         <h2 id="thanks">Thanks</h2>
         <p>Thanks to <a href="https://pypi.python.org/">PyPI</a>, <a href="https://cloud.google.com/bigquery/">Google BigQuery</a>, <a href="https://github.com/ofek/pypinfo">pypinfo</a> and <a href="http://pythonwheels.com/">Python Wheels</a>.</p>
       </div>
@@ -140,14 +145,14 @@
         $scope.show($scope.num_packages);
         $scope.now_showing_days = 'over 365 days.';
       };
-      $http.get('top-pypi-packages-365-days.json').then(function(res) {
+      $http.get('top-pypi-packages-365-days.min.json').then(function(res) {
         $scope.last_update = res.data.last_update;
         // Store all for later
         $scope.all_packages_365 = res.data['rows'];
         // We'll show these to begin
         $scope.days_365();
       });
-      $http.get('top-pypi-packages-30-days.json').then(function(res) {
+      $http.get('top-pypi-packages-30-days.min.json').then(function(res) {
         // Store all for later
         $scope.all_packages_30 = res.data['rows'];
       });

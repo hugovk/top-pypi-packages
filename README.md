@@ -1,15 +1,20 @@
-# top-pypi-packages
+# Top PyPI Packages
 
 A weekly dump of the 5,000 most-downloaded packages from PyPI:
 
 * https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.json
 * https://hugovk.github.io/top-pypi-packages/top-pypi-packages-365-days.json
 
+Minified:
+
+* https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json
+* https://hugovk.github.io/top-pypi-packages/top-pypi-packages-365-days.min.json
+
 ## Server setup notes
 
 From cron, it runs pypinfo to dump JSON and commit back to this repo.
 
-### Install Python 3.6 and pip
+### Install Python 3.6, pip and jq
 
 For example on Ubuntu 14.04:
 
@@ -19,6 +24,7 @@ sudo apt-get update
 sudo apt-get install python3.6
 python3.6 --version
 curl https://bootstrap.pypa.io/get-pip.py | sudo python3.6
+sudo apt-get install jq
 ```
 
 ### Install and set up pypinfo
