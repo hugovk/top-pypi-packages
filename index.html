@@ -94,7 +94,7 @@
           <span ng-bind="now_showing_packages">...</span>
           <span ng-bind="now_showing_days">...</span>
         </div>
-        <button ng-click="show(500)" >Show 500</button>
+        <button ng-click="show(100)" >Show 100</button>
         <button ng-click="show(1000)" >Show 1,000</button>
         <button ng-click="show(5000)" >Show 5,000</button>
         <button ng-click="days_30()" >30 days</button>
@@ -113,7 +113,7 @@
           <span ng-bind="now_showing_packages"></span>
           <span ng-bind="now_showing_days"></span>
         </div>
-        <button ng-click="show(500)" >Show 500</button>
+        <button ng-click="show(100)" >Show 100</button>
         <button ng-click="show(1000)" >Show 1,000</button>
         <button ng-click="show(5000)" >Show 5,000</button>
         <button ng-click="days_30()" >30 days</button>
@@ -129,7 +129,7 @@
   <script>
     var app = angular.module('app', [])
     .controller('packageCtrl', function ($scope, $http) {
-      $scope.num_packages = 500;
+      $scope.num_packages = 100;
       $scope.show = function (number) {
         $scope.packages = $scope.all_packages.slice(0, number);
         $scope.num_packages = number;
