@@ -101,7 +101,7 @@
         <button ng-click="days_365()" >365 days</button>
          <div class="list">
           <span ng-hide="packages">JavaScript must be enabled to display the list of packages.</span>
-          <a ng-repeat="package in packages" ng-href="https://pypi.python.org/pypi/{{ package.project }}" class="" ng-attr-title="{{ package.project }}">
+          <a ng-repeat="package in packages" ng-href="https://pypi.org/project/{{ package.project }}" class="" ng-attr-title="{{ package.project }}">
             <div class="wrapper">
               <div class="one" id="{{ $index + 1 }}">{{ ($index + 1).toLocaleString() }}.</div>
               <div class="two" id="{{ package.project }}" ng-bind="package.project"></div>
