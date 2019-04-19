@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Adapted from https://zellwk.com/blog/deploy-static-site/
 
