@@ -1,6 +1,6 @@
 # Top PyPI Packages
 
-A weekly dump of the 5,000 most-downloaded packages from PyPI:
+A fortnighly dump of the 5,000 most-downloaded packages from PyPI:
 
 * https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.json
 * https://hugovk.github.io/top-pypi-packages/top-pypi-packages-365-days.json
@@ -58,5 +58,6 @@ https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-s
 
 ```bash
 crontab -e
-17 15 * * Tue /home/botuser/github/top-pypi-packages/top-pypi-packages.sh > /tmp/top-pypi-packages.log 2>&1
+# Only for odd weeks https://stackoverflow.com/a/19278657/724176
+30 17 * * Fri expr \( `date +\%s` / 604800 + 1 \) \% 2 > /dev/null || ( eval "$(ssh-agent -s)"; ssh-add ~/.ssh/id_rsa-top-pypi-packages; /home/botuser/github/top-pypi-packages/top-pypi-packages.sh ) > /tmp/top-pypi-packages.log 2>&1
 ```
