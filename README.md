@@ -1,5 +1,7 @@
 # Top PyPI Packages
 
+[![DOI](https://zenodo.org/badge/116806538.svg)](https://zenodo.org/badge/latestdoi/116806538)
+
 A monthly dump of the 4,000 most-downloaded packages from PyPI:
 
 * https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.json
