@@ -24,3 +24,9 @@ git commit -m "Deploy $REV" # Step 8
 git push # Step 9
 
 # git checkout master # Step 10
+
+# CalVer YYYY.0M
+date=$(date '+%Y.%m')
+echo $date
+git tag -a "$date" -m "Release $date"
+git push --tags
