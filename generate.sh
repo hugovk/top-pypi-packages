@@ -10,7 +10,7 @@ TOTLAL=$(curl -s https://pypi.org \
 
 add_total_number()
 {
-  jq --arg total_projects $TOTAL '{total_projects: $total_projects}+.' \
+  jq --argjson total_projects "$TOTAL" '{total_projects: $total_projects}+.' \
     | sed -E -e 's/^ +//g'
 }
 

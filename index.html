@@ -101,7 +101,7 @@
       <div class="col-sm-6">
         <h2 id="charts">The charts</h2>
         <div>
-          <p>Last updated <span ng-bind="last_update"></span>. (Updated monthly.)</p>
+          <p>Last updated <span ng-bind="last_update"></span>, <span ng-bind="total_projects"></span> packages. (Updated monthly.)</p>
           <span ng-bind="now_showing_packages">...</span>
           <span ng-bind="now_showing_days">...</span>
         </div>
@@ -132,7 +132,7 @@
       </div>
     </div>
     <footer>
-      <p>Last updated <span ng-bind="last_update"></span>. (Updated monthly.)</p>
+      <p>Last updated <span ng-bind="last_update"></span>, <span ng-bind="total_projects"></span> packages. (Updated monthly.)</p>
       <a class="github-fork-ribbon" href="https://github.com/hugovk/top-pypi-packages" target="_blank" rel="noopener" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
     </footer>
   </div>
@@ -158,6 +158,7 @@
       };
       $http.get('top-pypi-packages-365-days.min.json').then(function(res) {
         $scope.last_update = res.data.last_update;
+        $scope.total_projects = res.data.total_projects.toLocaleString();
         // Store all for later
         $scope.all_packages_365 = res.data['rows'];
         // We'll show these to begin
