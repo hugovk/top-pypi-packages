@@ -20,5 +20,5 @@ python3 -m pip --version
 jq -c . < top-pypi-packages-30-days.json > top-pypi-packages-30-days.min.json
 
 # Generate and minify for 365 days
-/usr/local/bin/pypinfo --json --indent 0 --limit 4000 --days 365 "" project > top-pypi-packages-365-days.json
-jq -c . < top-pypi-packages-365-days.json > top-pypi-packages-365-days.min.json
+#/usr/local/bin/pypinfo --json --indent 0 --limit 4000 --days 365 "" project > top-pypi-packages-365-days.json
+#jq -c . < top-pypi-packages-365-days.json > top-pypi-packages-365-days.min.json
