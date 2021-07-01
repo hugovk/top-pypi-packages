@@ -2,15 +2,17 @@
 
 [![DOI](https://zenodo.org/badge/116806538.svg)](https://zenodo.org/badge/latestdoi/116806538)
 
-A monthly dump of the 4,000 most-downloaded packages from PyPI:
+A monthly dump of the 5,000 most-downloaded packages from PyPI:
 
 * https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.json
-* https://hugovk.github.io/top-pypi-packages/top-pypi-packages-365-days.json
 
 Minified:
 
 * https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json
-* https://hugovk.github.io/top-pypi-packages/top-pypi-packages-365-days.min.json
+
+**Note:** It now takes too much quota to collect data for 365 days.
+Those files were last updated on 2021-04-01 and may be removed soon.
+Old versions can be found in [releases](https://github.com/hugovk/top-pypi-packages/releases).
 
 ## Server setup notes
 

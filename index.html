@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.2/gh-fork-ribbon.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
   <link rel="icon" href="favicon.ico">
   <style>
     body { margin-top:15px; }
@@ -24,7 +24,6 @@
     }
     .github-fork-ribbon:hover, .github-fork-ribbon:active {
       /* Until github-fork-ribbon-css #62 is released: */
-      background-color: rgba(0, 0, 0, 0.0);
       outline: none;
     }
     .wrapper {
@@ -60,14 +59,14 @@
       outline: 0.05em solid #090;
     }
   </style>
-  <title>Top PyPI Packages: A monthly dump of the 4,000 most-downloaded packages from PyPI</title>
+  <title>Top PyPI Packages: A monthly dump of the 5,000 most-downloaded packages from PyPI</title>
   <meta property="og:title" content="Top PyPI Packages">
   <meta property="og:type" content="website">
   <!--<meta property="og:image" content="https://hugovk.github.io/top-pypi-packages/image.png">-->
   <!--<meta property="og:image:width" content="630">-->
   <!--<meta property="og:image:height" content="630">-->
   <meta property="og:url" content="https://hugovk.github.io/top-pypi-packages/">
-  <meta property="og:description" content="A monthly dump of the 4,000 most-downloaded packages from PyPI">
+  <meta property="og:description" content="A monthly dump of the 5,000 most-downloaded packages from PyPI">
 </head>
 <body ng-app="app" ng-controller="packageCtrl">
   <div class="container">
@@ -76,16 +75,19 @@
       <h1 id="top">Top PyPI Packages</h1>
       <a href="https://zenodo.org/badge/latestdoi/116806538"><img alt="DOI" src="https://zenodo.org/badge/116806538.svg"></a>
         <h2 id="what">What is this?</h2>
-        <p>A monthly dump of the 4,000 most-downloaded packages from PyPI.</p>
+        <p>A monthly dump of the 5,000 most-downloaded packages from PyPI.</p>
         <ul>
           <li><a href="https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.json">https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.json</a></li>
-          <li><a href="https://hugovk.github.io/top-pypi-packages/top-pypi-packages-365-days.json">https://hugovk.github.io/top-pypi-packages/top-pypi-packages-365-days.json</a></li>
         </ul>
         <p>Minified:</p>
         <ul>
           <li><a href="https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json">https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json</a></li>
-          <li><a href="https://hugovk.github.io/top-pypi-packages/top-pypi-packages-365-days.min.json">https://hugovk.github.io/top-pypi-packages/top-pypi-packages-365-days.min.json</a></li>
         </ul>
+        <p>
+          <b>Note:</b> It now takes too much quota to collect data for 365 days.
+          Those files were last updated on 2021-04-01 and may be removed soon.
+          Old versions can be found in <a href="https://github.com/hugovk/top-pypi-packages/releases">releases</a>.
+        </p>
         <h2 id="thanks">Thanks</h2>
         <p>Thanks to <a href="https://pypi.org/">PyPI</a>, <a href="https://cloud.google.com/bigquery/">Google BigQuery</a>, <a href="https://github.com/ofek/pypinfo">pypinfo</a> and <a href="https://pythonwheels.com/">Python Wheels</a>.</p>
         <h2 id="users">Used by</h2>
@@ -107,9 +109,7 @@
         </div>
         <button ng-click="show(100)" >Show 100</button>
         <button ng-click="show(1000)" >Show 1,000</button>
-        <button ng-click="show(4000)" >Show 4,000</button>
-        <button ng-click="days_30()" >30 days</button>
-        <button ng-click="days_365()" >365 days</button>
+        <button ng-click="show(5000)" >Show 5,000</button>
          <div class="list">
           <span ng-hide="packages">JavaScript must be enabled to display the list of packages.</span>
           <a ng-repeat="package in packages" ng-href="https://pypi.org/project/{{ package.project }}" class="" ng-attr-title="{{ package.project }}">
@@ -126,9 +126,7 @@
         </div>
         <button ng-click="show(100)" >Show 100</button>
         <button ng-click="show(1000)" >Show 1,000</button>
-        <button ng-click="show(4000)" >Show 4,000</button>
-        <button ng-click="days_30()" >30 days</button>
-        <button ng-click="days_365()" >365 days</button>
+        <button ng-click="show(5000)" >Show 5,000</button>
       </div>
     </div>
     <footer>
@@ -151,21 +149,12 @@
         $scope.show($scope.num_packages);
         $scope.now_showing_days = 'over 30 days.';
       };
-      $scope.days_365 = function () {
-        $scope.all_packages = $scope.all_packages_365;
-        $scope.show($scope.num_packages);
-        $scope.now_showing_days = 'over 365 days.';
-      };
-      $http.get('top-pypi-packages-365-days.min.json').then(function(res) {
+      $http.get('top-pypi-packages-30-days.min.json').then(function(res) {
         $scope.last_update = res.data.last_update;
         // Store all for later
-        $scope.all_packages_365 = res.data['rows'];
-        // We'll show these to begin
-        $scope.days_365();
-      });
-      $http.get('top-pypi-packages-30-days.min.json').then(function(res) {
-        // Store all for later
         $scope.all_packages_30 = res.data['rows'];
+        // We'll show these to begin
+        $scope.days_30();
       });
     });
   </script>
