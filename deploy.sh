@@ -23,7 +23,7 @@ git commit -m "Deploy $REV" # Step 8
 
 git push # Step 9
 
-# git checkout master # Step 10
+# git checkout main # Step 10
 
 # CalVer YYYY.0M
 date=$(date '+%Y.%m')

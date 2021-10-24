@@ -7,7 +7,7 @@ set -e
 echo "$(date)"
 
 # Update
-git pull origin master
+git pull origin main
 
 # Generate the files
 bash generate.sh
