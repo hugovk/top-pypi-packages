@@ -11,7 +11,7 @@ Minified:
 * https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json
 
 **Note:** It now takes too much quota to collect data for 365 days.
-Those files were last updated on 2021-04-01 and may be removed soon.
+Those files were last updated on 2021-04-01 and have been removed.
 Old versions can be found in [releases](https://github.com/hugovk/top-pypi-packages/releases).
 
 ## Server setup notes
