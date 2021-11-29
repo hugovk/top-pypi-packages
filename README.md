@@ -18,22 +18,17 @@ Old versions can be found in [releases](https://github.com/hugovk/top-pypi-packa
 
 From cron, it runs pypinfo to dump JSON and commit back to this repo.
 
-### Install Python 3.6, pip and jq
+### Install jq
 
 For example on Ubuntu 14.04:
 
 ```bash
-sudo add-apt-repository ppa:deadsnakes/ppa
-sudo apt-get update
-sudo apt-get install python3.6
-python3.6 --version
-curl https://bootstrap.pypa.io/get-pip.py | sudo python3.6
 sudo apt-get install jq
 ```
 
 ### Install and set up pypinfo
 
-Follow https://github.com/ofek/pypinfo to sign up for BigQuery, install and authenticate
+Follow https://github.com/ofek/pypinfo to sign up for BigQuery, install and authenticate.
 
 ```bash
 sudo pip3 install "pypinfo>=13.0.0"
