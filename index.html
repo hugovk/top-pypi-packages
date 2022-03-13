@@ -53,10 +53,24 @@
     }
     a:hover,
     a:hover div {
-      /*color: #007b00;*/
       color: white;
       background-color: #090;
       outline: 0.05em solid #090;
+    }
+    @media (prefers-color-scheme: dark) {
+      body {
+        color: #ccc;
+        background: black;
+      }
+      a {
+        color: #5bf;
+      }
+      a:hover,
+      a:hover div {
+        color: black;
+        background-color: #5bf;
+        outline: 0.05em solid #5bf;
+      }
     }
   </style>
   <title>Top PyPI Packages: A monthly dump of the 5,000 most-downloaded packages from PyPI</title>
@@ -129,7 +143,7 @@
       <a class="github-fork-ribbon" href="https://github.com/hugovk/top-pypi-packages" target="_blank" rel="noopener" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
     </footer>
   </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
   <script>
     var app = angular.module('app', [])
     .controller('packageCtrl', function ($scope, $http) {
