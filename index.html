@@ -53,10 +53,24 @@
     }
     a:hover,
     a:hover div {
-      /*color: #007b00;*/
       color: white;
       background-color: #090;
       outline: 0.05em solid #090;
+    }
+    @media (prefers-color-scheme: dark) {
+      body {
+        color: #ccc;
+        background: black;
+      }
+      a {
+        color: #5bf;
+      }
+      a:hover,
+      a:hover div {
+        color: black;
+        background-color: #5bf;
+        outline: 0.05em solid #5bf;
+      }
     }
   </style>
   <title>Top PyPI Packages: A monthly dump of the 5,000 most-downloaded packages from PyPI</title>
