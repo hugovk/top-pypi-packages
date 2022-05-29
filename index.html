@@ -58,6 +58,13 @@
       background-color: #090;
       outline: 0.05em solid #090;
     }
+
+    a#digitalocean {
+      color: inherit;
+      background-color: inherit;
+      outline: inherit;
+    }
+
     @media (prefers-color-scheme: dark) {
       body {
         color: #ccc;
@@ -142,6 +149,11 @@
     <footer>
       <p>Last updated <span ng-bind="last_update"></span>. (Updated monthly.)</p>
       <a class="github-fork-ribbon" href="https://github.com/hugovk/top-pypi-packages" target="_blank" rel="noopener" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
+      <p>
+        <a id="digitalocean" href="https://m.do.co/c/431978e0c3e9">
+          <img alt="Powered by Digital Ocean" src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/PoweredByDO/DO_Powered_by_Badge_blue.svg" width="201px">
+        </a>
+      </p>
     </footer>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>

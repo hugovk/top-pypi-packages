@@ -60,3 +60,13 @@ crontab -e
 # First of the month
 30 17 1 * * ( eval "$(ssh-agent -s)"; ssh-add ~/.ssh/id_rsa-top-pypi-packages; /home/botuser/github/top-pypi-packages/top-pypi-packages.sh ) > /tmp/top-pypi-packages.log 2>&1
 ```
+
+# Thanks
+
+Thanks to Digital Ocean for supporting open-source software.
+
+<p>
+  <a href="https://m.do.co/c/431978e0c3e9">
+    <img alt="Powered by Digital Ocean" src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/PoweredByDO/DO_Powered_by_Badge_blue.svg" width="201px">
+  </a>
+</p>
