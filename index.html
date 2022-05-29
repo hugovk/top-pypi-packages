@@ -6,15 +6,29 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
   <link rel="icon" href="favicon.ico">
   <style>
+    :root {
+      --bg-color: #eee;
+      --text-color: #444;
+      --link-color: #090;
+      --link-hover-color: white;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: black;
+        --text-color: #ccc;
+        --link-color: #5bf;
+        --link-hover-color: black;
+      }
+    }
     body { margin-top:15px; }
     h1 { text-align: center; }
     h1,h2,h3 { line-height:1.2; }
     canvas, body {
-      background-color: #EEEEEE;
-      color: #444;
+      background-color: var(--bg-color);
+      color: var(--text-color);
       font-size: 18px;
       line-height: 1.6;
-      margin:40px  auto;
+      margin:40px auto;
       max-width: 650px;
       padding: 0 10px;
     }
@@ -49,36 +63,20 @@
       text-align: right;
     }
     a {
-      color: #090;
+      color: var(--link-color);
       text-decoration: none;
     }
     a:hover,
     a:hover div {
-      color: white;
-      background-color: #090;
-      outline: 0.05em solid #090;
+      color: var(--link-hover-color);
+      background-color: var(--link-color);
+      outline: 0.05em solid var(--link-color);
     }
 
     a#digitalocean {
       color: inherit;
       background-color: inherit;
       outline: inherit;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      body {
-        color: #ccc;
-        background: black;
-      }
-      a {
-        color: #5bf;
-      }
-      a:hover,
-      a:hover div {
-        color: black;
-        background-color: #5bf;
-        outline: 0.05em solid #5bf;
-      }
     }
   </style>
   <title>Top PyPI Packages: A monthly dump of the 5,000 most-downloaded packages from PyPI</title>
