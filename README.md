@@ -63,10 +63,10 @@ crontab -e
 
 # Thanks
 
-Thanks to Digital Ocean for supporting open-source software.
+Thanks to DigitalOcean for supporting open-source software.
 
 <p>
   <a href="https://m.do.co/c/431978e0c3e9">
-    <img alt="Powered by Digital Ocean" src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/PoweredByDO/DO_Powered_by_Badge_blue.svg" width="201px">
+    <img alt="Powered by DigitalOcean" src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/PoweredByDO/DO_Powered_by_Badge_blue.svg" width="201px">
   </a>
 </p>
