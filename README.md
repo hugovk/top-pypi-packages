@@ -20,7 +20,7 @@ From cron, it runs pypinfo to dump JSON and commit back to this repo.
 
 ### Install jq
 
-For example on Ubuntu 14.04:
+For example on Ubuntu 22.04:
 
 ```bash
 sudo apt-get install jq
@@ -31,7 +31,7 @@ sudo apt-get install jq
 Follow https://github.com/ofek/pypinfo to sign up for BigQuery, install and authenticate.
 
 ```bash
-sudo pip3 install "pypinfo>=13.0.0"
+pip3 install "pypinfo>=13.0.0"
 pypinfo --help
 pypinfo --auth path/to/your_credentials.json
 ```
