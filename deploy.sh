@@ -17,7 +17,7 @@ REV=`git rev-parse HEAD`
 
 # cp -R build/* . && rm -rf build # Step 6
 
-git add . # Step 7
+git add --update # Step 7
 
 git commit -m "Deploy $REV" # Step 8
 
