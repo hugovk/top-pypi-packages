@@ -99,3 +99,7 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# Big unzipped files
+top-pypi-packages-30-days-all.csv
+top-pypi-packages-30-days-all.json

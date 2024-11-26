@@ -18,12 +18,12 @@ Old versions can be found in [releases](https://github.com/hugovk/top-pypi-packa
 
 From cron, it runs pypinfo to dump JSON and commit back to this repo.
 
-### Install jq
+### Install jq and zip
 
 For example on Ubuntu 22.04:
 
 ```bash
-sudo apt-get install jq
+sudo apt-get install jq zip
 ```
 
 ### Install and set up pypinfo
