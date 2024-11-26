@@ -4,7 +4,7 @@
 set -e
 
 # Timestamp for logs
-echo "$(date)"
+date
 
 # Update
 git pull origin main
