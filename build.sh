@@ -4,13 +4,17 @@
 set -e
 
 # Timestamp for logs
-echo "$(date)"
+date
 
 # Update
 git pull origin main
 
 # Generate the files
 bash generate.sh
+
+# Remove big unzipped file
+rm top-pypi-packages-30-days-all.csv
+rm top-pypi-packages-30-days-all.json
 
 # Make output directory, don't fail if it exists
 # mkdir -p build

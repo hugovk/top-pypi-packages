@@ -7,7 +7,7 @@
 set -e
 
 # Gets commit hash as message
-REV=`git rev-parse HEAD`
+REV=$(git rev-parse HEAD)
 
 # git checkout gh-pages # Step 3
 
@@ -27,6 +27,6 @@ git push # Step 9
 
 # CalVer YYYY.0M
 date=$(date '+%Y.%m')
-echo $date
+echo "$date"
 git tag -a "$date" -m "Release $date"
 git push --tags
