@@ -18,7 +18,7 @@ python3 -m pip --version
 # Check if zip is installed
 if ! command -v zip &> /dev/null
 then
-    echo "zip not be found, consider: apt install zip"
+    echo "zip not found, consider: apt install zip"
     exit 1
 fi
 
