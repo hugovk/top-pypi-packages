@@ -22,8 +22,8 @@ then
     exit 1
 fi
 
-# Generate and minify for 30 days
-/home/botuser/.local/bin/pypinfo --all --json --indent 0 --limit 10000000 --days 30 "" project > top-pypi-packages-30-days-all.json
+# Generate and minify
+/home/botuser/.local/bin/pypinfo --all --json --indent 0 --limit 10000000 --days 29 "" project > top-pypi-packages-30-days-all.json
 python3 trim.py > top-pypi-packages-30-days.json
 jq -c . < top-pypi-packages-30-days.json > top-pypi-packages-30-days.min.json
 echo 'download_count,project' > top-pypi-packages-30-days-all.csv
