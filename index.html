@@ -139,7 +139,6 @@
         <div>
           <p>Last updated <span ng-bind="last_update"></span>. (Updated monthly.)</p>
           <span ng-bind="now_showing_packages">...</span>
-          <span ng-bind="now_showing_days">...</span>
         </div>
         <button ng-click="show(100)" >Show 100</button>
         <button ng-click="show(1000)" >Show 1,000</button>
@@ -156,7 +155,6 @@
         </div>
         <div>
           <span ng-bind="now_showing_packages"></span>
-          <span ng-bind="now_showing_days"></span>
         </div>
         <button ng-click="show(100)" >Show 100</button>
         <button ng-click="show(1000)" >Show 1,000</button>
@@ -180,12 +178,11 @@
       $scope.show = function (number) {
         $scope.packages = $scope.all_packages.slice(0, number);
         $scope.num_packages = number;
-        $scope.now_showing_packages = 'Showing ' + number.toLocaleString() + ' packages';
+        $scope.now_showing_packages = 'Showing ' + number.toLocaleString() + ' packages.';
       };
       $scope.days_30 = function () {
         $scope.all_packages = $scope.all_packages_30;
         $scope.show($scope.num_packages);
-        $scope.now_showing_days = 'over 30 days.';
       };
       $http.get('top-pypi-packages-30-days.min.json').then(function(res) {
         $scope.last_update = res.data.last_update;
