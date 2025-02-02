@@ -2,7 +2,7 @@
 
 [![DOI](https://zenodo.org/badge/116806538.svg)](https://zenodo.org/badge/latestdoi/116806538)
 
-A monthly dump of the 8,000 most-downloaded packages from PyPI:
+A monthly dump of the 15,000 most-downloaded packages from PyPI:
 
 * https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json
 
