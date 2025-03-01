@@ -89,12 +89,12 @@
         <h2 id="what">What is this?</h2>
         <p>A monthly dump of the 15,000 most-downloaded packages from PyPI.</p>
         <ul>
-          <li><a href="https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json">https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json</a></li>
-          <li><a href="https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.csv">https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.csv</a></li>
+          <li><a href="https://hugovk.github.io/top-pypi-packages/top-pypi-packages.min.json">https://hugovk.github.io/top-pypi-packages/top-pypi-packages.min.json</a></li>
+          <li><a href="https://hugovk.github.io/top-pypi-packages/top-pypi-packages.csv">https://hugovk.github.io/top-pypi-packages/top-pypi-packages.csv</a></li>
         </ul>
         <p>Unminified:</p>
         <ul>
-          <li><a href="https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.json">https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.json</a></li>
+          <li><a href="https://hugovk.github.io/top-pypi-packages/top-pypi-packages.json">https://hugovk.github.io/top-pypi-packages/top-pypi-packages.json</a></li>
         </ul>
         <h2 id="thanks">Thanks</h2>
         <p>Thanks to <a href="https://pypi.org/">PyPI</a>,
@@ -176,7 +176,7 @@
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
   <script>
-    var app = angular.module('app', [])
+    const app = angular.module('app', [])
     .controller('packageCtrl', function ($scope, $http) {
       $scope.num_packages = 100;
       $scope.show = function (number) {
@@ -184,16 +184,10 @@
         $scope.num_packages = number;
         $scope.now_showing_packages = 'Showing ' + number.toLocaleString() + ' packages.';
       };
-      $scope.days_30 = function () {
-        $scope.all_packages = $scope.all_packages_30;
-        $scope.show($scope.num_packages);
-      };
-      $http.get('top-pypi-packages-30-days.min.json').then(function(res) {
+      $http.get('top-pypi-packages.min.json').then(function(res) {
         $scope.last_update = res.data.last_update;
-        // Store all for later
-        $scope.all_packages_30 = res.data['rows'];
-        // We'll show these to begin
-        $scope.days_30();
+        $scope.all_packages = res.data['rows'];
+        $scope.show($scope.num_packages);
       });
     });
   </script>
