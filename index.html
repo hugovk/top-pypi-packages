@@ -176,7 +176,7 @@
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
   <script>
-    var app = angular.module('app', [])
+    const app = angular.module('app', [])
     .controller('packageCtrl', function ($scope, $http) {
       $scope.num_packages = 100;
       $scope.show = function (number) {
@@ -184,16 +184,10 @@
         $scope.num_packages = number;
         $scope.now_showing_packages = 'Showing ' + number.toLocaleString() + ' packages.';
       };
-      $scope.days_30 = function () {
-        $scope.all_packages = $scope.all_packages_30;
-        $scope.show($scope.num_packages);
-      };
       $http.get('top-pypi-packages-30-days.min.json').then(function(res) {
         $scope.last_update = res.data.last_update;
-        // Store all for later
-        $scope.all_packages_30 = res.data['rows'];
-        // We'll show these to begin
-        $scope.days_30();
+        $scope.all_packages = res.data['rows'];
+        $scope.show($scope.num_packages);
       });
     });
   </script>
