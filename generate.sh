@@ -16,7 +16,7 @@ python3 -m pip --version
 /home/botuser/.local/bin/pypinfo --version
 
 # Generate and minify
-days=27
+days=24
 /home/botuser/.local/bin/pypinfo --all --json --indent 0 --limit 15000 --days $days --test "" project
 /home/botuser/.local/bin/pypinfo --all --json --indent 0 --limit 15000 --days $days        "" project > top-pypi-packages.json
 jq -c . < top-pypi-packages.json > top-pypi-packages.min.json
