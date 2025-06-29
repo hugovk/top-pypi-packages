@@ -5,20 +5,15 @@ set -e
 
 # Check versions
 python3 -m pip --version
-/home/botuser/.local/bin/pypinfo --version
 
 # Ensure newest pip and pypinfo
 python3 -m pip install -U pip
-python3 -m pip install -U pypinfo
 
 # Check versions
 python3 -m pip --version
-/home/botuser/.local/bin/pypinfo --version
 
 # Generate and minify
-days=22
-/home/botuser/.local/bin/pypinfo --all --json --indent 0 --limit 15000 --days $days --test "" project
-/home/botuser/.local/bin/pypinfo --all --json --indent 0 --limit 15000 --days $days        "" project > top-pypi-packages.json
+python3 clickhouse.py
 jq -c . < top-pypi-packages.json > top-pypi-packages.min.json
 echo 'download_count,project' > top-pypi-packages.csv
 jq -r '.rows[] | [.download_count, .project] | @csv' top-pypi-packages.json >> top-pypi-packages.csv
