@@ -24,6 +24,8 @@ lint.ignore = [
   "E221",  # Multiple spaces before operator
   "E226",  # Missing whitespace around arithmetic operator
   "E241",  # Multiple spaces after ','
+  "S310",  # suspicious-url-open-usage
+  "S608",  # hardcoded-sql-expression
   "UP038", # Makes code slower and more verbose
 ]
 lint.isort.required-imports = [ "from __future__ import annotations" ]
