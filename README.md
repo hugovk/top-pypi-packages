@@ -4,11 +4,11 @@
 
 A monthly dump of the 15,000 most-downloaded packages from PyPI:
 
-* https://hugovk.github.io/top-pypi-packages/top-pypi-packages.min.json
+* https://hugovk.dev/top-pypi-packages/top-pypi-packages.min.json
 
 Unminified:
 
-* https://hugovk.github.io/top-pypi-packages/top-pypi-packages.json
+* https://hugovk.dev/top-pypi-packages/top-pypi-packages.json
 
 **Note:** It now takes too much quota to collect data for 365 days.
 Those files were last updated on 2021-04-01 and have been removed.
