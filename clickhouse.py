@@ -9,28 +9,51 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
+TOTAL_ROWS = 15_000
+# The ClickHouse demo server enforces max_result_rows = 10000
+PAGE_SIZE = 10_000
 
-def get_clickhouse_data() -> str:
+
+def get_clickhouse_data() -> dict:
     params = {"user": "demo", "default_format": "JSON"}
+    url = "https://sql-clickhouse.clickhouse.com?" + urllib.parse.urlencode(params)
 
     today = dt.datetime.now()
     first_of_this_month = today.replace(day=1)
     last_month = first_of_this_month - dt.timedelta(days=1)
     last_month = last_month.strftime("%Y-%m-01")
     print(f"{last_month=}")
-    query = f"""
-       SELECT SUM(count) AS download_count, project
-       FROM pypi.pypi_downloads_per_month
-       WHERE month = '{last_month}'
-       GROUP BY project
-       ORDER BY download_count DESC
-       LIMIT 15000"""
 
-    url = "https://sql-clickhouse.clickhouse.com?" + urllib.parse.urlencode(params)
-    req = urllib.request.Request(url, data=query.encode("utf-8"), method="POST")
-    with urllib.request.urlopen(req) as response:
-        data = response.read().decode("utf-8")
-    return data
+    combined: dict = {}
+    for offset in range(0, TOTAL_ROWS, PAGE_SIZE):
+        limit = min(PAGE_SIZE, TOTAL_ROWS - offset)
+        query = f"""
+           SELECT SUM(count) AS download_count, project
+           FROM pypi.pypi_downloads_per_month
+           WHERE month = '{last_month}'
+           GROUP BY project
+           ORDER BY download_count DESC, project
+           LIMIT {limit} OFFSET {offset}"""
+        print(f"Fetching {limit} rows at offset {offset}")
+
+        req = urllib.request.Request(url, data=query.encode("utf-8"), method="POST")
+        with urllib.request.urlopen(req) as response:
+            page = json.loads(response.read().decode("utf-8"))
+
+        if page.get("exception"):
+            msg = f"ClickHouse error: {page['exception']}"
+            raise SystemExit(msg)
+        if not page.get("data"):
+            msg = f"ClickHouse returned no rows for {last_month} at {offset=}"
+            raise SystemExit(msg)
+
+        if not combined:
+            combined = page
+        else:
+            combined["data"].extend(page["data"])
+
+    combined["rows"] = len(combined["data"])
+    return combined
 
 
 def reformat_clickhouse_json(input_data: dict) -> None:
@@ -60,7 +83,6 @@ def reformat_clickhouse_json(input_data: dict) -> None:
 
 def main() -> None:
     data = get_clickhouse_data()
-    data = json.loads(data)
     reformat_clickhouse_json(data)
 
 
