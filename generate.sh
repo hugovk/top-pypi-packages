@@ -3,15 +3,6 @@
 # Prevents script from running if there are any errors
 set -e
 
-# Check versions
-python3 -m pip --version
-
-# Ensure newest pip and pypinfo
-python3 -m pip install -U pip
-
-# Check versions
-python3 -m pip --version
-
 # Generate and minify
 python3 clickhouse.py
 jq -c . < top-pypi-packages.json > top-pypi-packages.min.json
