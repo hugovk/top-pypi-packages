@@ -14,49 +14,20 @@ Unminified:
 Those files were last updated on 2021-04-01 and have been removed.
 Old versions can be found in [releases](https://github.com/hugovk/top-pypi-packages/releases).
 
-## Server setup notes
+## How it's updated
 
-From cron, it runs pypinfo to dump JSON and commit back to this repo.
+[`update.yml`](.github/workflows/update.yml) runs on GitHub Actions on the first of each month.
+It fetches last month's download counts from the public
+[ClickHouse PyPI dataset](https://clickpy.clickhouse.com/)
+with `clickhouse.py`, commits the new files, tags a release, and GitHub Pages serves them from `main`.
 
-### Install jq and zip
+To rerun it, or for a dry run that doesn't commit, use "Run workflow" on the
+[Actions tab](https://github.com/hugovk/top-pypi-packages/actions/workflows/update.yml).
 
-For example on Ubuntu 22.04:
+### Run locally
 
-```bash
-sudo apt-get install jq zip
-```
-
-### Install and set up pypinfo
-
-Follow https://github.com/ofek/pypinfo to sign up for BigQuery, install and authenticate.
+Needs Python 3.10+ and [jq](https://jqlang.github.io/jq/):
 
 ```bash
-pip3 install "pypinfo>=13.0.0"
-pypinfo --help
-pypinfo --auth path/to/your_credentials.json
-```
-
-### Set up this repo
-
-```bash
-git clone git@github.com:hugovk/top-pypi-packages.git
-cd top-pypi-packages
-git config user.name "Deploy Bot"
-git config user.email "deploybot@example.com"
-git config user.name
-git config user.email
-```
-
-* Create SSH key on server: https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-digitalocean-droplets
-* Add your SSH key to the ssh-agent:
-https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#adding-your-ssh-key-to-the-ssh-agent
-* Add deploy key with write access at https://github.com/hugovk/top-pypi-packages/settings/keys/new
-
-
-### Run from cron
-
-```bash
-crontab -e
-# First of the month
-30 17 1 * * ( eval "$(ssh-agent -s)"; ssh-add ~/.ssh/id_rsa-top-pypi-packages; /home/botuser/github/top-pypi-packages/top-pypi-packages.sh ) > /tmp/top-pypi-packages.log 2>&1
+./generate.sh
 ```
